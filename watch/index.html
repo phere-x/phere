@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ATMOS</title>
+    <link rel="shortcut icon" type="image/png" href="https://i.imgur.com/8LvfHa2.png"/>
+    <link rel="stylesheet" href="style.css">
+    <script src= 
+    "https://code.jquery.com/jquery-1.12.4.min.js"> 
+    </script>
+    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+    <style>
+        body { 
+            overflow: hidden;
+        }
+        .player, #chat { 
+            border: 0;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+        .player { 
+            left: 0;
+            width: 78%;
+            display: none;
+        }
+        #chat { 
+            right: 0;
+            width: 22%;
+        }
+        .player-choice-label{
+          color: black;
+        }
+    </style>
+</head>     
+    <body style="background-color: black;"> 
+        <div class="player okru-player" id="okru-player"> 
+          <iframe src="https://ok.ru/videoembed/1928062901780" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen></iframe>         
+        </div>
+        <div class="player gg-player" id="gg-player"> 
+          <iframe src="https://goodgame.ru/player?178736" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen></iframe>           
+        </div>
+        <div class="player smash-player" id="smash-player"> 
+          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen src="https://www.smashcast.tv/embed/atmos-o?popout=true&autoplay=false"></iframe>                   
+        </div>
+        <div class="player t-player" id="t-player" style="display: block">
+        </div>
+        <div id="chat"> 
+          <div class="navbar">
+            <div class="dropdown">
+              <button class="dropbtn">Player Choice
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <ol id="player-choice-btn-group">
+                  <label class="player-choice-label" for="gg-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="gg-player"> GG Player</label>
+                  <label class="player-choice-label" for="smash-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="smash-player"> Smashcast Player</label>
+                  <label class="player-choice-label" for="t-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="t-player"> T Player</label>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <iframe src="https://www5.cbox.ws/box/?boxid=920790&boxtag=lO83W5" width="100%" height="95%" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>	
+        </div>
+
+        <div><h3 style="color: white;">Please select a player from the dropdown menu top right</h3></div>
+
+        <script type="text/javascript"> 
+          $(document).ready(function() { 
+              $('input[type="radio"]').click(function() { 
+                  var inputValue = $(this).attr("value"); 
+                  var targetBox = $("." + inputValue); 
+                  $(".player").not(targetBox).hide();
+                  $(targetBox).show(); 
+              }); 
+          }); 
+        </script> 
+        <script type="text/javascript">
+          var options = {
+            width: "100%",
+            height: "100%",
+            channel: "pro_arcV",
+            parent: []
+          };
+          var player = new Twitch.Player("t-player", options);
+          player.setVolume(1.0);
+        </script>
+    </body>     
+</html>
