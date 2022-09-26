@@ -1,100 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>ATMOS</title>
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico"/>
-    <link rel="stylesheet" href="css/styles_watch.css">
-    <script src= "https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
-    <style>
-        body { 
-            overflow: hidden;
-        }
-        .player, #chat { 
-            border: 0;
-            height: 100%;
-            position: absolute;
-            top: 0;
-        }
-        .player { 
-            left: 0;
-            width: 78%;
-            display: none;
-        }
-        #chat { 
-            right: 0;
-            width: 22%;
-        }
-        .player-choice-label{
-          color: black;
-        }
-    </style>
-</head>     
-    <body style="background-color: black;">
-
-        <div class="player okru-player" id="okru-player"> 
-          <iframe src="https://ok.ru/videoembed/1928062901780" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen></iframe>         
-        </div>
-
-        <div class="player gg-player" id="gg-player"> 
-          <iframe src="https://goodgame.ru/player?178736" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen></iframe>           
-        </div>
-
-        <div class="player smash-player" id="smash-player"> 
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen src="https://www.smashcast.tv/embed/atmos-o?popout=true&autoplay=false"></iframe>                   
-        </div>
-
-        <div class="player t-player" id="t-player" style="display: block"></div>
-
-        <div id="chat"> 
-
-          <div class="navbar">
-            <div class="dropdown">
-              <button class="dropbtn">Player Choice
-                <i class="fa fa-caret-down"></i>
-              </button>
-              <div class="dropdown-content">
-                <ol id="player-choice-btn-group">
-                  <label class="player-choice-label" for="gg-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="gg-player"> GG Player</label>
-                  <label class="player-choice-label" for="smash-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="smash-player"> Smashcast Player</label>
-                  <label class="player-choice-label" for="t-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="t-player"> T Player</label>
-                </ol>
-              </div>
-            </div>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Watch Together</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+    <link rel="stylesheet" href="watch.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.18.5, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gugi:400">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "BASE",
+		"logo": "images/logo.png"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="watch">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-overlap u-overlap-contrast u-palette-5-dark-2 u-xl-mode"    data-lang="en"><header class="u-clearfix u-header" id="sec-2da9" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
+        <a href="ATLAS.html" class="u-image u-logo u-image-1" data-image-width="1238" data-image-height="377" title="ATLAS">
+          <img src="images/logo.png" class="u-logo-image u-logo-image-1">
+        </a>
+        <div class="u-container-style u-group u-hover-feature u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <a href="ATLAS.html" class="u-border-none u-btn u-button-style u-none u-text-active-custom-color-1 u-text-hover-palette-1-light-2 u-text-white u-btn-1"><span class="u-file-icon u-icon u-text-white u-icon-1"><img src="images/69524-1176123c.png" alt=""></span>&nbsp;HOME
+            </a>
+            <a href="inv.html" class="u-btn u-button-style u-none u-text-active-custom-color-1 u-text-hover-palette-1-light-2 u-text-white u-btn-2"><span class="u-file-icon u-icon u-icon-2"><img src="images/2.png" alt=""></span>&nbsp;DISCORD
+            </a>
+            <a href="watch.html" class="u-border-none u-btn u-button-style u-none u-text-active-custom-color-1 u-text-hover-palette-1-light-2 u-text-white u-btn-3"><span class="u-file-icon u-icon u-text-white u-icon-3"><img src="images/1665346-7ced7d72.png" alt=""></span>&nbsp;WATCH PARTY
+            </a>
           </div>
-
-          <iframe
-            src="https://www.twitch.tv/embed/a_t_m_0_s/chat?darkpopout&parent=atmos.lol"
-            width="100%"
-            height="95%" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
-          </iframe>
-
         </div>
-
-        <div><h3 style="color: white;">Please select a player from the dropdown menu top right</h3></div>
-
-        <script type="text/javascript"> 
-          $(document).ready(function() { 
-              $('input[type="radio"]').click(function() { 
-                  var inputValue = $(this).attr("value"); 
-                  var targetBox = $("." + inputValue); 
-                  $(".player").not(targetBox).hide();
-                  $(targetBox).show(); 
-              }); 
-          }); 
-        </script> 
-
-        <script type="text/javascript">
-          var options = {
-            width: "100%",
-            height: "100%",
-            channel: "pro_arcV",
-            parent: []
-          };
-          var player = new Twitch.Player("t-player", options);
-          player.setVolume(1.0);
-        </script>
-
-    </body>     
-</html>
+      </div></header>
+    <section class="u-clearfix u-image u-shading u-section-1" id="sec-4a69" data-image-width="1920" data-image-height="1080">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <a href="https://discord.com/invite/zFS6TSgDx5" class="u-active-palette-2-base u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-custom-font u-hover-feature u-radius-6 u-btn-1" target="_blank" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction="">WATCH</a>
+      </div>
+      
+    </section>
+</body></html>
