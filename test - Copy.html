@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #chat-panel {
+      width: 200px;
+      height: 100%;
+      position: relative;
+      resize: horizontal;
+      overflow: auto;
+    }
+    #chat-panel-resize-bar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 10px;
+      height: 100%;
+      background-color: #999;
+      cursor: ew-resize;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-panel">
+    <div id="chat-panel-resize-bar"></div>
+    <!-- Your chat content here -->
+  </div>
+
+  <script>
+    const resizeBar = document.querySelector('#chat-panel-resize-bar');
+    const chatPanel = document.querySelector('#chat-panel');
+
+    let isResizing = false;
+    let initialResizeX = 0;
+    let initialPanelWidth = 0;
+
+    resizeBar.addEventListener('mousedown', (event) => {
+      isResizing = true;
+      initialResizeX = event.clientX;
+      initialPanelWidth = chatPanel.offsetWidth;
+    });
+
+    document.addEventListener('mousemove', (event) => {
+      if (isResizing) {
+        const dx = event.clientX - initialResizeX;
+        chatPanel.style.width = initialPanelWidth + dx + 'px';
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      isResizing = false;
+    });
+  </script>
+</body>
+</html>
