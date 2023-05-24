@@ -34,7 +34,24 @@
     <body style="background-color: black;">
         <!-- TWITCH -->
         <div class="player t-player" id="t-player" style="display: block">
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.twitch.tv/?channel=pro_arcV&muted=false&parent=atmos.lol&player=popout"> </iframe>             
+          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.twitch.tv/?channel=pro_arcV&muted=false&player=popout&enableExtensions=true&parent=atmos.lol"> </iframe>             
+        </div>
+        <!-- OK.RU -->
+        <div class="player okru-player" id="okru-player"> 
+          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://ok.ru/videoembed/4686973378068"></iframe>
+        </div>
+        <!-- GG Player -->
+        <div class="player gg-player" id="gg-player"> 
+          <iframe src="https://goodgame.ru/player?198874" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen></iframe>           
+        </div>
+        <!-- AT Player -->
+        <div class="player at-player" id="at-player"> 
+          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.angelthump.com/?channel=atmos0"> </iframe>             
+        </div>
+  <!------------------------------------------------------------------------------------------------------------------------------------------>
+        <!-- SYLF Player -->
+        <div class="player sylf-player" id="sylf-player"> 
+          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.twitch.tv/?channel=streamfuss&enableExtensions=false&muted=false&parent=atmos.lol&player=popout"></iframe>
         </div>
         <!-- AFREEKA -->
         <div class="player afreecatv-player" id="afreecatv-player"> 
@@ -44,23 +61,9 @@
         <div class="player douyu-player" id="douyu-player"> 
           <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://open.douyu.com/tpl/h5/chain2/aid/10657842"></iframe>
         </div>
-  <!------------------------------------------------------------------------------------------------------------------------------------------>
         <!-- TROVO -->
         <div class="player trovo-player" id="trovo-player"> 
           <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen src="https://player.trovo.live/embed/player?streamername=Atmos"></iframe>                   
-        </div>
-        <!-- OK.RU -->
-        <div class="player okru-player" id="okru-player"> 
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://play.afreecatv.com/ziplio/embed"></iframe>
-        </div>
-        <!-- GG Player -->
-        <div class="player gg-player" id="gg-player"> 
-          <iframe src="https://play.afreecatv.com/ziplio/null" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen></iframe>           
-        </div>
-        <!-- SYLF Player -->
-        <div class="player sylf-player" id="sylf-player"> 
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.twitch.tv/?channel=streamfuss&enableExtensions=false&muted=false&parent=atmos.lol&player=popout"></iframe>
-        </div>
         </div>
   <!------------------------------------------------------------------------------------------------------------------------------------------>
         <!-- T-CHAT -->
@@ -73,8 +76,9 @@
               <div class="dropdown-content">
                 <ol id="player-choice-btn-group">
                   <label class="player-choice-label" for="t-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="t-player"> #1 - Twitch</label>
-                  <label class="player-choice-label" for="afreecatv-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="afreecatv-player"> #2 - AfreecaTV</label>
-                  <label class="player-choice-label" for="sylf-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="sylf-player"> streamfuss</label>
+                  <label class="player-choice-label" for="okru-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="okru-player"> #2 - OKRU</label>
+                  <label class="player-choice-label" for="gg-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="gg-player"> #3 - GG</label>
+                  <label class="player-choice-label" for="at-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="at-player"> #4 - A-Thump</label>
                 </ol>
               </div>
             </div>

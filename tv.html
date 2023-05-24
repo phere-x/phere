@@ -1,105 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf8">
     <title>ATMOS</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-    <link rel="stylesheet" href="tv.css">
+
     <script src= "https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
     <style>
         body { 
             overflow: hidden;
         }
-        .player, #chat { 
+        #player, #chat { 
             border: 0;
             height: 100%;
             position: absolute;
             top: 0;
         }
-        .player { 
+        #player { 
             left: 0;
             width: 80%;
-            display: none;
         }
         #chat { 
             right: 0;
             width: 20%;
         }
-        .player-choice-label{
-          color: black;
+        /* Add styles for settings icon and box */
+        #settings-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        #settings-box {
+            position: fixed;
+            top: 50px;
+            right: 10px;
+            display: none;
+            border: 1px solid black;
+            background-color: #fff;
+            padding: 10px;
         }
     </style>
 </head>     
-    <body style="background-color: black;">
-        <!-- TWITCH -->
-        <div class="player t-player" id="t-player" style="display: block">
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.twitch.tv/?channel=pro_arcV&muted=false&player=popout&enableExtensions=true&parent=atmos.lol"> </iframe>             
-        </div>
-        <!-- OK.RU -->
-        <div class="player okru-player" id="okru-player"> 
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://ok.ru/videoembed/4686973378068"></iframe>
-        </div>
-        <!-- GG Player -->
-        <div class="player gg-player" id="gg-player"> 
-          <iframe src="https://goodgame.ru/player?198874" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen></iframe>           
-        </div>
-        <!-- AT Player -->
-        <div class="player at-player" id="at-player"> 
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.angelthump.com/?channel=atmos0"> </iframe>             
-        </div>
-  <!------------------------------------------------------------------------------------------------------------------------------------------>
-        <!-- SYLF Player -->
-        <div class="player sylf-player" id="sylf-player"> 
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.twitch.tv/?channel=streamfuss&enableExtensions=false&muted=false&parent=atmos.lol&player=popout"></iframe>
-        </div>
-        <!-- AFREEKA -->
-        <div class="player afreecatv-player" id="afreecatv-player"> 
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://play.afreecatv.com/proarcv/embed"></iframe>
-        </div>
-        <!-- DOUYU -->
-        <div class="player douyu-player" id="douyu-player"> 
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://open.douyu.com/tpl/h5/chain2/aid/10657842"></iframe>
-        </div>
-        <!-- TROVO -->
-        <div class="player trovo-player" id="trovo-player"> 
-          <iframe width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" allowfullscreen src="https://player.trovo.live/embed/player?streamername=Atmos"></iframe>                   
-        </div>
-  <!------------------------------------------------------------------------------------------------------------------------------------------>
-        <!-- T-CHAT -->
-        <div id="chat"> 
-          <div class="navbar">
-            <div class="dropdown">
-              <button class="dropbtn">Player Choice
-                <i class="fa fa-caret-down"></i>
-              </button>
-              <div class="dropdown-content">
-                <ol id="player-choice-btn-group">
-                  <label class="player-choice-label" for="t-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="t-player"> #1 - Twitch</label>
-                  <label class="player-choice-label" for="okru-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="okru-player"> #2 - OKRU</label>
-                  <label class="player-choice-label" for="gg-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="gg-player"> #3 - GG</label>
-                  <label class="player-choice-label" for="at-btn"><input type="radio" class="player-choice-btn" name="player-choice" value="at-player"> #4 - A-Thump</label>
-                </ol>
-              </div>
+<body> 
+    <div id="player"> 
+        <iframe id="video-player" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.twitch.tv/?channel=pro_arcV&muted=false&player=popout&enableExtensions=true&parent=atmos.lol"></iframe>             
+    </div>
+
+    <iframe id="chat"
+        src="https://www.twitch.tv/embed/picco/chat?darkpopout&enableExtensions=true&parent=atmos.lol"
+        height="100%"
+        width="100%">
+    </iframe>
+
+    <!-- Add settings icon and box -->
+    <img id="settings-icon" src="./images/settings-icon.png">
+    <div id="settings-box">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+            <div>
+                <label for="chat-size">Chat Size (%): </label>
+                <input id="chat-size" type="number" min="1" max="100" value="20">
+                <br>
+                <label for="video-source">Video Source: </label>
+                <select id="video-source">
+                  <option value="https://player.twitch.tv/?channel=pro_arcV&muted=false&player=popout&enableExtensions=true&parent=atmos.lol">Twitch</option>
+                  <option value="https://player.angelthump.com/?channel=atmos0">Angelthump</option>
+                    <option value="https://goodgame.ru/player?198874">Goodgame</option>
+                    <option value="https://ok.ru/videoembed/4686973378068">OK.ru</option>
+                    <!-- <option value="https://play.afreecatv.com/ziplio/embed">Angelthump</option> -->
+                    <!-- <option value="https://open.douyu.com/tpl/h5/chain2/aid/10657842">Angelthump</option> -->
+                  </select>
             </div>
-          </div>
-          <iframe src="https://www.twitch.tv/embed/a_t_m_0_s/chat?darkpopout&enableExtensions=true&parent=atmos.lol"
-          height="100%"
-          width="100%">
-          </iframe>  
-      </div>
-
-        <div><h3 style="color: white;">Select a player from the dropdown menu top right</h3></div>
-
-        <script type="text/javascript"> 
-          $(document).ready(function() { 
-              $('input[type="radio"]').click(function() { 
-                  var inputValue = $(this).attr("value"); 
-                  var targetBox = $("." + inputValue); 
-                  $(".player").not(targetBox).hide();
-                  $(targetBox).show(); 
-              }); 
-          }); 
-        </script> 
-    </body>     
+            <button id="apply-settings">Apply</button>
+        </div>
+    </div>
+            
+    <script>
+        // Attach click handler to settings icon
+        $('#settings-icon').click(function() {
+            $('#settings-box').toggle();
+        });
+    
+        var currentVideoSource = $('#video-player').attr('src');
+    
+        // Attach click handler to apply button
+        $('#apply-settings').click(function() {
+            var chatSize = $('#chat-size').val();
+    
+            // Validate the chat size
+            if(chatSize >= 1 && chatSize <= 100) {
+                // Calculate the player size
+                var playerSize = 100 - chatSize;
+    
+                // Apply the sizes
+                $('#player').css('width', playerSize + '%');
+                $('#chat').css('width', chatSize + '%');
+            } else {
+                alert('Please enter a valid size between 1 and 100.');
+            }
+    
+            // Update the video player source only if it has changed
+            var videoSource = $('#video-source').val();
+            if (videoSource !== currentVideoSource) {
+                $('#video-player').attr('src', videoSource);
+                currentVideoSource = videoSource;
+            }
+    
+            // Hide the settings box
+            $('#settings-box').hide();
+        });
+    </script>
+    
+</body>     
 </html>
