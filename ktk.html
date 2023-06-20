@@ -1,90 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-    }
-    .container {
-      display: flex;
-      height: 100%;
-    }
-    #video-container {
-      flex: 8;
-      overflow: hidden;
-    }
-    #chat-container {
-      flex: 2;
-      overflow: hidden;
-    }
-    #resize-button {
-      position: absolute;
-      top: 15px;
-      right: 10px;
-      cursor: pointer;
-    }
-    #resize-button img {
-      width: 35px;
-      height: 35px;
-    }
-    #chat-size-input-container {
-      position: absolute;
-      top: 20px;
-      right: 50px;
-      display: none;
-    }
-    #chat-size-input {
-      width: 70px;
-      height: 25px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div id="video-container">
-        <iframe src="https://player.kick.com/atmos" frameborder="0" allowfullscreen="true" scrolling="no" height="100%" width="100%"></iframe>
-    </div>
-    <div id="chat-container">
-      <iframe frameborder="0" scrolling="yes" id="chat_embed" src="https://www.twitch.tv/embed/a_t_m_0_s/chat?darkpopout&enableExtensions=true&parent=atmos.lol" height="100%" width="100%"></iframe>
-        </div>
-    <div id="resize-button">
-      <img src="./images/chat.png" alt="Chat Icon">
-    </div>
-    <div id="chat-size-input-container">
-      <input type="number" id="chat-size-input" placeholder="Chat Size (%)" min="0" max="100">
-    </div>
-  </div>
+    <meta charset="utf8">
+    <title>ATMOS</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
 
-  <script>
-    const container = document.querySelector('.container');
-    const chatContainer = document.querySelector('#chat-container');
-    const resizeButton = document.querySelector('#resize-button');
-    const chatSizeInputContainer = document.querySelector('#chat-size-input-container');
-    const chatSizeInput = document.querySelector('#chat-size-input');
-
-    resizeButton.addEventListener('click', () => {
-      chatSizeInputContainer.style.display = 'block';
-      chatSizeInput.focus();
-    });
-
-    chatSizeInput.addEventListener('blur', () => {
-      chatSizeInputContainer.style.display = 'none';
-    });
-
-    chatSizeInput.addEventListener('input', () => {
-        const chatSize = parseInt(chatSizeInput.value);
-        if (!isNaN(chatSize)) {
-            const containerWidth = container.offsetWidth;
-            const chatWidth = (chatSize / 100) * containerWidth;
-            chatContainer.style.flexBasis = chatWidth + 'px';
-        } else {
-            chatContainer.style.flexBasis = ''; // Reset the resize behavior
+    <script src= "https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+    <style>
+        body { 
+            overflow: hidden;
         }
+        #player, #chat { 
+            border: 0;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+        #player { 
+            left: 0;
+            width: 80%;
+        }
+        #chat { 
+            right: 0;
+            width: 20%;
+        }
+        /* Add styles for settings icon and box */
+        #settings-icon {
+            position: fixed;
+            top: 5.8%;
+            right: 1.7%;
+            height: 35px;
+            width: 35px;
+            cursor: pointer;
+        }
+        #settings-box {
+            position: fixed;
+            top: 5.8%;
+            right: 3.4%;
+            display: none;
+            border: 1px solid rgb(255, 255, 255);
+            background-color: #acb3cd;
+            padding: 15px;
+        }
+    </style>
+</head>     
+<body> 
+    <div id="player"> 
+        <iframe id="video-player" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="no" seamless allow="autoplay; fullscreen" allowfullscreen src="https://player.twitch.tv/?channel=pro_arcV&muted=false&player=popout&enableExtensions=true&parent=atmos.lol"></iframe>             
+    </div>
+
+    <iframe id="chat"
+        src="https://www.twitch.tv/embed/joeykaotyk/chat?darkpopout&enableExtensions=true&parent=atmos.lol"
+        height="100%"
+        width="100%">
+    </iframe>
+
+    <!-- Add settings icon and box -->
+    <img id="settings-icon" src="./images/settings.png"/>
+    <div id="settings-box">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+            <div>
+                <label for="chat-size">Chat Size(%): </label>
+                <input id="chat-size" type="number" min="1" max="100" value="20">
+                <br>
+                <label for="video-source">Player: </label>
+                <select id="video-source">
+                    <option value="https://player.twitch.tv/?channel=pro_arcV&muted=false&player=popout&enableExtensions=true&parent=atmos.lol">Twitch</option>
+                    <option value="https://player.kick.com/atmos">Kick</option>
+                    <option value="https://player.angelthump.com/?channel=atmos0">Angelthump</option>
+                    <option value="https://goodgame.ru/player?198874">Goodgame</option>
+                    <option value="https://ok.ru/videoembed/4686973378068">OK.ru</option>
+                    <!-- <option value="https://play.afreecatv.com/ziplio/embed">AfreecaTV</option> -->
+                    <!-- <option value="https://open.douyu.com/tpl/h5/chain2/aid/10657842">Douyu</option> -->
+                </select>
+            </div>
+            <button id="apply-settings">Apply</button>
+        </div>
+    </div>
+            
+    <script>
+        // Attach click handler to settings icon
+        $('#settings-icon').click(function() {
+            $('#settings-box').toggle();
         });
-  </script>
+
+        var currentVideoSource = $('#video-player').attr('src');
+
+        // Attach click handler to apply button
+        $('#apply-settings').click(function() {
+            var chatSize = $('#chat-size').val();
+    
+            // Validate the chat size
+            if(chatSize >= 1 && chatSize <= 100) {
+                // Calculate the player size
+                var playerSize = 100 - chatSize;
+    
+                // Apply the sizes
+                $('#player').css('width', playerSize + '%');
+                $('#chat').css('width', chatSize + '%');
+            } else {
+                alert('Please enter a valid size between 1 and 100.');
+            }
+    
+            // Update the video player source only if it has changed
+            var videoSource = $('#video-source').val();
+            if (videoSource !== currentVideoSource) {
+                $('#video-player').attr('src', videoSource);
+                currentVideoSource = videoSource;
+            }
+    
+            // Hide the settings box
+            $('#settings-box').hide();
+        });
+    </script>
+
 </body>
 </html>
-
